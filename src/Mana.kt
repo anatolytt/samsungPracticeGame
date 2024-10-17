@@ -1,0 +1,1 @@
+enum class Mana { Health, Power }
