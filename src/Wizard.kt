@@ -8,9 +8,9 @@ class Wizard (hp:Int,
 
     override fun attack(human: Human) {
         var harm: Int = power;
-        val manaHarmK: Double = 1.0
+        val manaHarmK: Double
         if (mana == Mana.Power) {
-            val manaHarmK = listOf(1.1, 1.2, 1.3, 1.4, 0.9, 2.0)[Random.nextInt(0, 6)]
+            manaHarmK = listOf(1.1, 1.2, 1.3, 1.4, 0.9, 2.0)[Random.nextInt(0, 6)]
             harm = (harm.toDouble() * manaHarmK.toDouble()).toInt()
             human.is_attacked(harm)
             if (manaHarmK == 0.9) {
@@ -41,4 +41,5 @@ class Wizard (hp:Int,
 
     override fun is_attacked(harm: Int) { hp -= harm }
     override fun toString(): String { return "Маг: здоровье = $hp, сила = $power, тип маны = $mana" }
+
 }

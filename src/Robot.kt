@@ -8,16 +8,14 @@ class Robot (hp:Int,
 
     override fun attack(human:Human) {
         var harm: Int = power
-        var batteryUsed: Int = 0
         if (battery <= 1) {
             battery = 1
-            batteryUsed = 1
         }
-        batteryUsed = Random.nextInt(1, (battery/10)+2)
-        if (battery > 70) {
-            harm = (harm*(1 + (batteryUsed.toDouble() / battery.toDouble()).toInt()))
+        val batteryUsed: Int = Random.nextInt(1, (battery/10)+2)
+        harm = if (battery > 70) {
+            (harm*(1 + (batteryUsed.toDouble() / battery.toDouble()).toInt()))
         } else {
-            harm = (harm*(1-(batteryUsed.toDouble() / battery.toDouble()))).toInt()
+            (harm*(1-(batteryUsed.toDouble() / battery.toDouble()))).toInt()
         }
         battery -= batteryUsed
         println("Робот нанёс урон $harm, потеряв $batteryUsed% батареи. ")
@@ -25,7 +23,7 @@ class Robot (hp:Int,
     }
 
     override fun heal() {
-        var batteryUsed : Int;
+        val batteryUsed : Int;
         if (battery <= 0) {
             battery = 0
             batteryUsed = 0

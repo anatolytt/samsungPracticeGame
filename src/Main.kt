@@ -1,16 +1,12 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import kotlin.math.max
+
 fun main() {
-    val robot: Robot = Robot(hp=100, power=15, battery = 100)
-    val wizard: Wizard = Wizard(hp=100, power=20, mana=Mana.Health)
-    val knight: Knight = Knight(hp=100, power=10, defence = 2)
-
-    val player1: Human = wizard;
-    val player2: Human = knight;
-
+    val inputHuman = InputHuman()
+    val player1: Human = inputHuman.createHuman(1) ;
+    val player2: Human = inputHuman.createHuman(2);
 
     var roundCounter :Int = 1;
-    while (player1.hp != 0 && player2.hp != 0) {
+    while (player1.hp > 0 && player2.hp > 0) {
         println(player1)
         println(player2)
         println("\n")
@@ -27,13 +23,5 @@ fun main() {
     println()
     println(player1)
     println(player2)
-    println("Игра закончена. ${
-        if (player1.hp == 0) {
-            player2.name
-        } else {
-            player1.name
-        }
-    } победил")
-
-
+    println("Игра закончена. ${maxOf(player1, player2).name} победил")
 }
